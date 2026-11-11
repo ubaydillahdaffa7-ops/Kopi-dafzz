@@ -1,0 +1,19 @@
+{
+  "name": "dafzz-coffe",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Website ᙃᴀ̷𝖿ᴢᴢ Coffe — menu, order via email/WhatsApp, ratings and photo reviews stored on server without a database.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
