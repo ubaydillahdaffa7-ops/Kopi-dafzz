@@ -63,6 +63,12 @@
   let revealObserver;
   function observeReveals() {
     if (revealObserver) revealObserver.disconnect();
+    // Browser lama/WebView tertentu belum memiliki IntersectionObserver.
+    // Jangan biarkan elemen .reveal tersembunyi atau menghentikan script carousel.
+    if (!("IntersectionObserver" in window)) {
+      $$(".reveal").forEach(node => node.classList.add("is-visible"));
+      return;
+    }
     revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -77,46 +83,70 @@
   }
   observeReveals();
 
-  // Carousel: native touch scroll + pointer drag with a small inertial tail.
+  // Carousel: touch swipe + mouse drag + arrow controls.
   const track = $("#menuTrack");
   const cards = $$(".menu-card", track || document);
-  let pointerDown=false, pointerStart=0, scrollStart=0, lastX=0, lastTime=0, velocity=0;
+  let pointerDown=false, pointerStart=0, pointerStartY=0, scrollStart=0,
+      lastX=0, lastTime=0, velocity=0, activePointerId=null, horizontalSwipe=false;
   if (track) {
     track.addEventListener("pointerdown", event => {
       if (event.pointerType === "mouse" && event.button !== 0) return;
-      pointerDown=true; pointerStart=event.clientX; scrollStart=track.scrollLeft;
-      lastX=event.clientX; lastTime=performance.now(); velocity=0;
-      track.classList.add("dragging"); track.setPointerCapture(event.pointerId);
+      pointerDown=true; horizontalSwipe=event.pointerType !== "touch";
+      pointerStart=lastX=event.clientX; pointerStartY=event.clientY;
+      scrollStart=track.scrollLeft; lastTime=performance.now(); velocity=0;
+      activePointerId=event.pointerId;
+      if (horizontalSwipe) {
+        track.classList.add("dragging");
+        track.setPointerCapture?.(event.pointerId);
+      }
     });
     track.addEventListener("pointermove", event => {
-      if (!pointerDown) return;
-      const now=performance.now(), dx=event.clientX-lastX, dt=Math.max(1,now-lastTime);
-      velocity=dx/dt; lastX=event.clientX; lastTime=now;
-      track.scrollLeft=scrollStart-(event.clientX-pointerStart);
+      if (!pointerDown || event.pointerId !== activePointerId) return;
+      const dx=event.clientX-pointerStart, dy=event.clientY-pointerStartY;
+      if (!horizontalSwipe) {
+        if (Math.abs(dx)<8 && Math.abs(dy)<8) return;
+        if (Math.abs(dy)>Math.abs(dx)) { pointerDown=false; return; }
+        horizontalSwipe=true;
+        track.classList.add("dragging");
+        track.setPointerCapture?.(event.pointerId);
+      }
+      const now=performance.now(), step=event.clientX-lastX, dt=Math.max(1,now-lastTime);
+      velocity=step/dt; lastX=event.clientX; lastTime=now;
+      track.scrollLeft=scrollStart-dx;
+      if (event.pointerType === "touch") event.preventDefault();
     });
-    const finishDrag = () => {
-      if (!pointerDown) return;
-      pointerDown=false; track.classList.remove("dragging");
-      let remaining=Math.max(-1.5,Math.min(1.5,velocity*16));
-      const glide=() => {
-        if (Math.abs(remaining)<.08) return;
-        track.scrollLeft-=remaining*10; remaining*=.88; requestAnimationFrame(glide);
-      };
-      requestAnimationFrame(glide);
+    const finishDrag = event => {
+      if (!pointerDown || (event && event.pointerId !== activePointerId)) return;
+      const wasSwipe=horizontalSwipe;
+      pointerDown=false; horizontalSwipe=false; activePointerId=null;
+      track.classList.remove("dragging");
+      if (wasSwipe) {
+        let remaining=Math.max(-1.2,Math.min(1.2,velocity*14));
+        const glide=()=>{ if(Math.abs(remaining)<.08)return; track.scrollLeft-=remaining*9; remaining*=.86; requestAnimationFrame(glide); };
+        requestAnimationFrame(glide);
+      }
     };
     track.addEventListener("pointerup",finishDrag);
     track.addEventListener("pointercancel",finishDrag);
     track.addEventListener("lostpointercapture",finishDrag);
-    $("#prevMenu")?.addEventListener("click",()=>track.scrollBy({left:-track.clientWidth*.78,behavior:"smooth"}));
-    $("#nextMenu")?.addEventListener("click",()=>track.scrollBy({left:track.clientWidth*.78,behavior:"smooth"}));
+    const moveByPage = direction => {
+      const distance=Math.max(track.clientWidth*.78, cards[0]?.getBoundingClientRect().width || 245);
+      if (typeof track.scrollBy === "function") track.scrollBy({left:direction*distance,behavior:"smooth"});
+      else track.scrollLeft += direction*distance;
+    };
+    $("#prevMenu")?.addEventListener("click",()=>moveByPage(-1));
+    $("#nextMenu")?.addEventListener("click",()=>moveByPage(1));
     const updateCarousel = () => {
       const max=Math.max(1,track.scrollWidth-track.clientWidth);
       const progress=Math.min(100,Math.max(16.66,track.scrollLeft/max*100));
-      $("#carouselProgress").style.width=progress+"%";
-      const index=Math.min(6,Math.floor(track.scrollLeft/(cards[0]?.offsetWidth+18))+1);
-      $("#carouselCount").textContent=String(index).padStart(2,"0")+" — 06";
+      const progressNode=$("#carouselProgress"), countNode=$("#carouselCount");
+      if(progressNode) progressNode.style.width=progress+"%";
+      const cardWidth=cards[0]?.getBoundingClientRect().width || 1;
+      const index=Math.min(6,Math.floor(track.scrollLeft/(cardWidth+18))+1);
+      if(countNode) countNode.textContent=String(index).padStart(2,"0")+" — 06";
     };
     track.addEventListener("scroll",updateCarousel,{passive:true});
+    window.addEventListener("resize",updateCarousel,{passive:true});
     updateCarousel();
   }
 
