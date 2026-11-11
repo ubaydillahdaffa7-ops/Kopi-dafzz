@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F0D0B">
+  <meta name="description" content="ᙃᴀ̷𝖿ᴢᴢ Coffe — ruang singgah untuk kopi dan cerita.">
+  <title>ᙃᴀ̷𝖿ᴢᴢ Coffe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,20,1;9..144,600,20,1;9..144,700,20,1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="crema-mark" aria-hidden="true"><svg viewBox="0 0 120 120"><path d="M60 8c28 0 52 23 52 52S88 112 60 112 8 88 8 60 32 8 60 8Z"/><path d="M60 22c21 0 38 17 38 38S81 98 60 98 22 81 22 60s17-38 38-38Z"/><path d="M60 35c14 0 25 11 25 25S74 85 60 85 35 74 35 60s11-25 25-25Z"/></svg></div>
+
+  <section class="splash" id="splash" aria-label="Selamat datang">
+    <div class="splash-photo"></div>
+    <div class="steam steam-one"></div><div class="steam steam-two"></div><div class="steam steam-three"></div>
+    <div class="splash-inner">
+      <p class="eyebrow splash-eyebrow">ROASTED SLOW · SERVED WARM</p>
+      <h1 id="welcomeText" aria-label="Welcome To Resto ᙃᴀ̷𝖿ᴢᴢ Coffe"></h1>
+      <p class="splash-caption">Tempat kecil untuk jeda yang berarti.</p>
+      <div class="splash-rule"><span></span></div>
+    </div>
+    <div class="drop drop-a"></div><div class="drop drop-b"></div>
+    <button class="skip-splash" id="skipSplash" type="button">LEWATI INTRO <span>→</span></button>
+  </section>
+
+  <header class="site-header">
+    <a class="wordmark" href="#" data-tab-link="menu">ᙃᴀ̷𝖿ᴢᴢ <span>Coffe</span></a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <button class="nav-link active" data-tab="menu">01 <span>Menu</span></button>
+      <button class="nav-link" data-tab="rating">02 <span>Ruang Cerita</span></button>
+      <button class="nav-link" data-tab="info">03 <span>Asal & Manfaat</span></button>
+    </nav>
+    <span class="header-note">EST. FOR SLOW MOMENTS</span>
+  </header>
+
+  <main>
+    <section class="tab-panel active" id="tab-menu" data-panel="menu">
+      <div class="menu-hero">
+        <div class="hero-photo"></div>
+        <div class="steam steam-hero steam-h1"></div><div class="steam steam-hero steam-h2"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">OUR LITTLE COFFEE CORNER — 01 / 03</p>
+          <h2>Temukan jeda<br><em>dalam secangkir.</em></h2>
+          <p>Kopi sederhana, diracik untuk menemani obrolan yang tidak perlu terburu-buru.</p>
+          <a class="text-link" href="#coffeeMenu">JELAJAHI MENU <span>↓</span></a>
+        </div>
+        <div class="hero-index">JEMBER / INDONESIA <span>—</span> 2026</div>
+      </div>
+
+      <section class="menu-section section-pad" id="coffeeMenu">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">PILIHAN HARI INI</p><h2>Menu <em>kopi.</em></h2></div>
+          <p class="section-side-note">Enam karakter, satu harga.<br>Diracik hangat saat dipesan.</p>
+        </div>
+        <div class="carousel-shell reveal">
+          <button class="carousel-arrow prev" id="prevMenu" aria-label="Menu sebelumnya" type="button">‹</button>
+          <div class="menu-track" id="menuTrack" tabindex="0" aria-label="Daftar menu kopi">
+            <article class="menu-card" data-menu="Kopi Kapal Api"><div class="menu-image image-kapal"><span class="image-number">01</span><span class="cup-stamp">K</span></div><div class="menu-card-copy"><p class="eyebrow">CLASSIC BLEND</p><h3>Kopi Kapal Api</h3><p>Rasa akrab dengan aroma panggang yang tegas.</p></div><div class="card-foot"><span>01 / HOUSE PICK</span><b>Rp 10.000</b></div></article>
+            <article class="menu-card" data-menu="Kopi Luwak"><div class="menu-image image-luwak"><span class="image-number">02</span><span class="cup-stamp">L</span></div><div class="menu-card-copy"><p class="eyebrow">SELECTED ROAST</p><h3>Kopi Luwak</h3><p>Karakter lembut dengan aroma yang khas.</p></div><div class="card-foot"><span>02 / SIGNATURE</span><b>Rp 10.000</b></div></article>
+            <article class="menu-card" data-menu="Kopi Matcha"><div class="menu-image image-matcha"><span class="image-number">03</span><span class="cup-stamp">M</span></div><div class="menu-card-copy"><p class="eyebrow">GREEN NOTES</p><h3>Kopi Matcha</h3><p>Perpaduan kopi dan matcha yang earthy.</p></div><div class="card-foot"><span>03 / BLENDED</span><b>Rp 10.000</b></div></article>
+            <article class="menu-card" data-menu="Kopi Gula Aren"><div class="menu-image image-aren"><span class="image-number">04</span><span class="cup-stamp">A</span></div><div class="menu-card-copy"><p class="eyebrow">PALM SUGAR</p><h3>Kopi Gula Aren</h3><p>Manis karamel dengan sentuhan espresso.</p></div><div class="card-foot"><span>04 / FAVORITE</span><b>Rp 10.000</b></div></article>
+            <article class="menu-card" data-menu="Kopi Pahit"><div class="menu-image image-pahit"><span class="image-number">05</span><span class="cup-stamp">P</span></div><div class="menu-card-copy"><p class="eyebrow">PURE BLACK</p><h3>Kopi Pahit</h3><p>Tanpa tambahan gula, fokus pada rasa asli.</p></div><div class="card-foot"><span>05 / BOLD</span><b>Rp 10.000</b></div></article>
+            <article class="menu-card" data-menu="Kopi (Original)"><div class="menu-image image-original"><span class="image-number">06</span><span class="cup-stamp">O</span></div><div class="menu-card-copy"><p class="eyebrow">THE ORIGINAL</p><h3>Kopi (Original)</h3><p>Sajian klasik untuk momen sehari-hari.</p></div><div class="card-foot"><span>06 / EVERYDAY</span><b>Rp 10.000</b></div></article>
+          </div>
+          <button class="carousel-arrow next" id="nextMenu" aria-label="Menu berikutnya" type="button">›</button>
+        </div>
+        <div class="carousel-meta"><span>GESER UNTUK MELIHAT SEMUA MENU</span><div class="carousel-progress"><span id="carouselProgress"></span></div><span id="carouselCount">01 — 06</span></div>
+        <div class="price-line reveal"><span>HARGA SELURUH MENU</span><strong>Rp 10.000</strong><span>PER CUP / 250 ML</span></div>
+        <div class="order-cta reveal"><div><p class="eyebrow">SUDAH MENENTUKAN PILIHAN?</p><h3>Secangkir berikutnya<br>menunggu <em>namamu.</em></h3></div><button class="primary-button" id="openOrder" type="button">BUAT PESANAN <span>↗</span></button></div>
+      </section>
+
+      <section class="order-section section-pad" id="orderView" hidden>
+        <div class="section-heading reveal"><div><p class="eyebrow">ORDER DESK — 01B</p><h2>Catat <em>pesanan.</em></h2></div><button class="back-link" id="backToMenu" type="button">← KEMBALI KE MENU</button></div>
+        <form id="orderForm" class="order-form reveal">
+          <div class="form-intro"><span>01 / DETAIL</span><p>Isi detail di bawah. Pesanan akan diteruskan ke meja barista.</p></div>
+          <label>Jenis menu yang dibeli<select id="orderMenu" name="Menu" required><option value="">Pilih menu kopi</option><option>Kopi Kapal Api</option><option>Kopi Luwak</option><option>Kopi Matcha</option><option>Kopi Gula Aren</option><option>Kopi Pahit</option><option>Kopi (Original)</option></select></label>
+          <label>Jumlah pesanan<input id="orderQty" name="Jumlah_Pesanan" type="number" min="1" max="99" value="1" required></label>
+          <label class="full-field">Lokasi / alamat pengantaran<textarea id="orderLocation" name="Lokasi_Pengantaran" rows="3" placeholder="Tuliskan alamat atau titik temu..." required></textarea></label>
+          <div class="total-row full-field"><span>TOTAL PESANAN <small>Rp 10.000 × jumlah cup</small></span><strong id="orderTotal">Rp 10.000</strong></div>
+          <div class="order-actions full-field">
+            <button class="primary-button submit-button" type="submit"><span class="button-liquid"></span><span class="button-label">PESAN VIA EMAIL <b>↗</b></span></button>
+            <button class="secondary-order-button" id="whatsappOrder" type="button">PESAN VIA WHATSAPP <span>↗</span></button>
+          </div>
+          <p class="form-message full-field" id="orderMessage" role="status"></p>
+        </form>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="tab-rating" data-panel="rating" hidden>
+      <div class="page-intro section-pad"><p class="eyebrow reveal">RUANG CERITA — 02 / 03</p><h2 class="reveal">Setiap cangkir<br>punya <em>cerita.</em></h2><p class="intro-copy reveal">Cerita kecil dari mereka yang pernah singgah di ᙃᴀ̷𝖿ᴢᴢ Coffe.</p></div>
+      <section class="reviews-layout section-pad">
+        <div class="review-list-column">
+          <div class="list-heading"><span>CATATAN PENGUNJUNG</span><span id="reviewCount">10 CERITA</span></div>
+          <div class="rating-summary" id="ratingSummary" aria-live="polite">
+            <strong id="averageRating">5.0</strong>
+            <div><span class="summary-stars" id="summaryStars">★★★★★</span><small id="ratingTotal">10 ULASAN</small></div>
+          </div>
+          <div id="reviewList" class="review-list"></div>
+        </div>
+        <aside class="review-form-wrap reveal"><p class="eyebrow">TINGGALKAN JEJAK</p><h3>Bagaimana<br>rasanya <em>singgah?</em></h3>
+          <form id="ratingForm">
+            <label>Nama<input id="reviewName" maxlength="50" placeholder="Nama kamu" required></label>
+            <label>Menu yang dipesan<select id="reviewMenu" required><option value="">Pilih menu</option><option>Kopi Kapal Api</option><option>Kopi Luwak</option><option>Kopi Matcha</option><option>Kopi Gula Aren</option><option>Kopi Pahit</option><option>Kopi (Original)</option></select></label>
+            <fieldset class="rating-picker"><legend>Rating kamu</legend><div id="starPicker" class="star-picker" role="radiogroup" aria-label="Pilih rating"><button type="button" data-star="1" aria-label="1 bintang">★</button><button type="button" data-star="2" aria-label="2 bintang">★</button><button type="button" data-star="3" aria-label="3 bintang">★</button><button type="button" data-star="4" aria-label="4 bintang">★</button><button type="button" data-star="5" aria-label="5 bintang">★</button></div></fieldset>
+            <label>Ceritakan pengalamanmu<textarea id="reviewComment" rows="4" maxlength="500" placeholder="Aroma, rasa, atau suasana yang kamu ingat..." required></textarea></label>
+            <label class="photo-upload-label">Tambahkan foto (opsional)<input id="reviewPhoto" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="photoHelp"><small id="photoHelp">JPG, PNG, atau WEBP. Maksimal 3 MB.</small></label>
+            <button class="primary-button" type="submit">KIRIM CERITA <span>↗</span></button><p class="form-message" id="ratingMessage" role="status"></p>
+          </form>
+        </aside>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="tab-info" data-panel="info" hidden>
+      <div class="page-intro info-intro section-pad"><p class="eyebrow reveal">BEHIND THE CUP — 03 / 03</p><h2>Kenali isi<br><em>cangkirmu.</em></h2><p class="intro-copy reveal">Setiap racikan punya karakter. Pilih satu menu untuk melihat ringkasan bahan, nutrisi, dan catatan saji.</p></div>
+      <section class="info-section section-pad">
+        <div class="coffee-selector reveal" id="coffeeSelector" aria-label="Pilih menu kopi">
+          <button class="coffee-choice selected" data-info="Kopi Kapal Api" type="button"><span class="coffee-icon">K</span><small>KAPAL API</small></button>
+          <button class="coffee-choice" data-info="Kopi Luwak" type="button"><span class="coffee-icon">L</span><small>LUWAK</small></button>
+          <button class="coffee-choice" data-info="Kopi Matcha" type="button"><span class="coffee-icon">M</span><small>MATCHA</small></button>
+          <button class="coffee-choice" data-info="Kopi Gula Aren" type="button"><span class="coffee-icon">A</span><small>GULA AREN</small></button>
+          <button class="coffee-choice" data-info="Kopi Pahit" type="button"><span class="coffee-icon">P</span><small>PAHIT</small></button>
+          <button class="coffee-choice" data-info="Kopi (Original)" type="button"><span class="coffee-icon">O</span><small>ORIGINAL</small></button>
+        </div>
+        <div class="info-detail" id="infoDetail" aria-live="polite">
+          <div class="info-photo image-kapal" id="infoPhoto"><span class="info-photo-label">THE DAILY CUP / 01</span><div class="info-cup">K</div></div>
+          <div class="info-copy"><p class="eyebrow" id="infoEyebrow">CLASSIC BLEND / 01</p><h3 id="infoTitle">Kopi Kapal Api</h3><p id="infoDescription">Kopi dengan karakter panggang dan rasa yang akrab. Cocok dinikmati hangat sebagai teman memulai hari.</p><p class="info-disclaimer">Angka nutrisi di bawah merupakan estimasi sajian 250 ml. Nilai aktual dapat berubah mengikuti takaran bubuk, air, gula, susu, dan metode seduh.</p>
+            <div class="table-heading"><span>RINGKASAN KARAKTER & NUTRISI</span><span>PER SAJIAN</span></div>
+            <table class="nutrition-table"><tbody id="nutritionRows"></tbody></table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="wordmark" href="#" data-tab-link="menu">ᙃᴀ̷𝖿ᴢᴢ <span>Coffe</span></a><span>ROASTED SLOW · SERVED WARM</span><span>© 2026 — A PLACE TO PAUSE</span></footer>
+  <div class="transition-drops" id="transitionDrops" aria-hidden="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
